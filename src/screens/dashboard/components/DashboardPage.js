@@ -24,6 +24,9 @@ export default class DashboardPage extends React.Component {
 							<DashboardTable 
 								table_columns={this.props.table_columns}
 								table_data={this.props.table_data}
+								number_of_pages={this.props.number_of_pages}
+								filters={this.props.filters}
+								switchPage={this.props.switchPage}
 							/>
 						)
 						: null

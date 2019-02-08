@@ -1,9 +1,19 @@
 .dashboard-table-filters {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
 	height: 50px;
+}
+
+.dashboard-table-filter-button {
+	border: 1px solid;
+	height: 30px;
+	padding-left: 2px;
+	padding-right: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .dashboard-table-pagination {
