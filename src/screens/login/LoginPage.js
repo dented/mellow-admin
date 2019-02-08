@@ -1,5 +1,6 @@
 import React from 'react'
 import './LoginPage.css'
+import { Link } from 'react-router-dom'
 
 import MellowLogo from 'statics/images/mellow-logo-full.png'
 
@@ -47,12 +48,14 @@ export default class LoginPage extends React.Component {
 						onChange={() => this.handleTextChange("password")}
 					/>
 				</form>
-				<button 
-					className="login-submit"
-					onClick={() => console.log("hi")}
-				>
-					Login
-				</button>
+				<Link to="/dashboard">
+					<button 
+						className="login-submit"
+						onClick={() => console.log("hi")}
+					>
+						Login
+					</button>
+				</Link>
 			</div>
 		)
 	}
