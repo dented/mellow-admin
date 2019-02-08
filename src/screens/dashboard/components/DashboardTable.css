@@ -1,3 +1,11 @@
+.dashboard-table-filters {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+}
+
 .dashboard-table-pagination {
 	display: flex;
 	flex-direction: row;
@@ -14,16 +22,26 @@
 .dashboard-table-content {
 	flex:1;
 	width: 100%;
-	border-spacing: 0
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 
 .dashboard-table-header {
 	background-color: #999;
+	color:#fff;
+}
+
+.dashboard-table-row:hover{
+	background-color: #999;
+	cursor: pointer;
 }
 
 tr {
 	height: 40px;
 	text-align: left;
+	border-top:1px solid #888;
+	border-bottom:1px solid #888;
+
 }
 
 td {
