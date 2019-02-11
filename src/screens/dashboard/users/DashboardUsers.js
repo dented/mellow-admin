@@ -66,7 +66,8 @@ export default class DashboardUsers extends React.Component {
 			table_actions:[
 				{label:"View"},
 				{label:"Edit"}
-			]
+			],
+			current_page:1
 		}
 	}
 
@@ -116,7 +117,8 @@ export default class DashboardUsers extends React.Component {
 		const visible_data = this.state.filtered_data.slice(start, end)
 		console.log(this.state.filtered_data)
 		this.setState({
-			visible_data:visible_data
+			visible_data:visible_data,
+			current_page:page
 		})
 	};
 
@@ -165,11 +167,17 @@ export default class DashboardUsers extends React.Component {
 				<DashboardTablePagination 
 					number_of_pages={this.state.number_of_pages}
 					switchPage={this.switchPage}
+					current_page={this.state.current_page}
 				/>
 				<DashboardTable
 					table_columns={this.state.table_columns}
 					table_data={this.state.visible_data}
 					table_actions={this.state.table_actions}
+				/>
+				<DashboardTablePagination 
+					number_of_pages={this.state.number_of_pages}
+					switchPage={this.switchPage}
+					current_page={this.state.current_page}
 				/>
 			</DashboardPage>
 		)

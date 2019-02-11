@@ -114,6 +114,11 @@
 	cursor: pointer;
 }
 
+.dashboard-table-page-button-active {
+	background-color: #333;
+	color:#fff;
+}
+
 .dashboard-table-page-button:first-of-type {
 	border-left: 2px solid rgb(230,230,230);
 	border-top-left-radius: 4px;

@@ -17,14 +17,25 @@ export const DashboardTableFilters = (props) => {
 export const DashboardTablePagination = (props) => {
 	let pages = []
 	for (let i = 1; i < props.number_of_pages+1; i++) {
-		pages.push(
-			<div 
-				className="dashboard-table-page-button"
-				onClick={() => props.switchPage(i)}
-			>
-				{i}
-			</div>
-		)
+		if(props.current_page == i){
+			pages.push(
+				<div 
+					className="dashboard-table-page-button dashboard-table-page-button-active"
+					onClick={() => props.switchPage(i)}
+				>
+					{i}
+				</div>
+			)
+		} else {
+			pages.push(
+				<div 
+					className="dashboard-table-page-button"
+					onClick={() => props.switchPage(i)}
+				>
+					{i}
+				</div>
+			)
+		}
 	}
 	return (
 		<div className="dashboard-table-pagination">
