@@ -2,8 +2,6 @@ import React from 'react'
 import './Dashboard.css'
 
 import DashboardNav from './DashboardNav'
-import DashboardHeader from './DashboardHeader'
-import DashboardTable from './DashboardTable'
 
 export default class DashboardPage extends React.Component {
 

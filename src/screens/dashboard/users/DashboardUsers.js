@@ -44,16 +44,6 @@ const RoleFilter = (props) => (
 	</div>
 )
 
-const RoleFilter2 = (props) => (
-	<div className="dashboard-table-filter-container">
-		<p className="dashboard-table-filter-label">Role:</p>
-		<select onChange={props.handleChange}>
-			<option>All</option>
-			<option>Parent</option>
-		</select>
-	</div>
-)
-
 export default class DashboardUsers extends React.Component {
 	constructor(props){
 		super(props)
@@ -124,7 +114,6 @@ export default class DashboardUsers extends React.Component {
 		const start = page * 10 - 10
 		const end = page * 10 
 		const visible_data = this.state.filtered_data.slice(start, end)
-		console.log(this.state.filtered_data)
 		this.setState({
 			visible_data:visible_data,
 			current_page:page
@@ -139,9 +128,10 @@ export default class DashboardUsers extends React.Component {
 
 	filterRole = (role) => {
 		let filtered_data = this.state.all_data
-		if(role != 'All'){
+		if(role !== 'All'){
 			filtered_data = this.state.all_data.filter((item) => {
 				if(item.role === role) return true
+				return false
 			})
 		}
 		const visible_data = filtered_data.slice(0,10)
@@ -154,12 +144,10 @@ export default class DashboardUsers extends React.Component {
 	}
 
 	handleRoleChange = (value) => {
-		console.log(value)
 		this.filterRole(value.label)
 	}
 
 	render() {
-		console.log(this.props.location)
 		return(
 			<DashboardPage
 				title="Users"

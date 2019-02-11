@@ -4,7 +4,6 @@ import './DashboardNav.css'
 
 import HomeIcon from "statics/nav-icons/home.png"
 import HomeActiveIcon from "statics/nav-icons/home-active.png"
-import UsersIcon2 from "statics/nav-icons/users.png"
 // import UsersIcon from "statics/nav-icons/users2.svg"
 import { UsersIcon } from "statics/nav-icons/NavIcons.js"
 
@@ -35,7 +34,7 @@ const NavButton = (props) => (
 		style={{textDecoration:"none"}}
 	>
 		{
-			props.pathname == props.link_dest //active
+			props.pathname === props.link_dest //active
 			? (
 				<div className="dashboard-nav-button dashboard-nav-active">
 					{props.link_icon}
@@ -53,11 +52,9 @@ const NavButton = (props) => (
 
 export default class DashboardNav extends React.Component {
 	render() {
-		console.warn(this.props.pathname)
-		console.log(this.props.pathname == '/dashboard')
 		return (
 			<div className="dashboard-nav">
-				<NavHome active={this.props.pathname == '/dashboard'}/>
+				<NavHome active={this.props.pathname === '/dashboard'}/>
 				<NavButton 
 					link_title="Users"
 					link_dest="/users"

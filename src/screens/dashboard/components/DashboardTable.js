@@ -17,7 +17,7 @@ export const DashboardTableFilters = (props) => {
 export const DashboardTablePagination = (props) => {
 	let pages = []
 	for (let i = 1; i < props.number_of_pages+1; i++) {
-		if(props.current_page == i){
+		if(props.current_page === i){
 			pages.push(
 				<div 
 					className="dashboard-table-page-button dashboard-table-page-button-active"
@@ -65,7 +65,7 @@ class DashboardTableAction extends React.Component {
 	}
 
 	showMoreActions = (item) => {
-		if (this.state.show_more_actions_item == item) item = null
+		if (this.state.show_more_actions_item === item) item = null
 		this.setState({
 			show_more_actions_item:item
 		})
@@ -101,6 +101,7 @@ class DashboardTableAction extends React.Component {
 					</div>
 				)
 				hidden_list.push(hidden_div)
+				return null
 			})
 		}
 		return (
@@ -119,7 +120,7 @@ class DashboardTableAction extends React.Component {
 						: null
 					}
 					{
-						this.state.show_more_actions_item && this.state.show_more_actions_item == this.props.item
+						this.state.show_more_actions_item && this.state.show_more_actions_item === this.props.item
 						? hidden_list
 						: null
 					}
@@ -149,7 +150,7 @@ export default class DashboardTable extends React.Component {
 	}
 
 	showMoreActions = (item) => {
-		if (this.state.show_more_actions_item == item) item = null
+		if (this.state.show_more_actions_item === item) item = null
 		this.setState({
 			show_more_actions_item:item
 		})
