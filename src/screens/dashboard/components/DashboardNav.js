@@ -19,15 +19,25 @@ const NavButton = (props) => (
 	</Link>
 )
 
+const NavHome = (props) => (
+	<Link
+		to={"/dashboard"}
+		style={{textDecoration:"none"}}
+	>
+		<div className="dashboard-nav-home dashboard-nav-button">
+			<img
+				src={HomeIcon}
+				alt="Home"
+			/>
+		</div>
+	</Link>
+)
+
 export default class DashboardNav extends React.Component {
 	render() {
 		return (
 			<div className="dashboard-nav">
-				<NavButton 
-					link_title="Home"
-					link_dest="/dashboard"
-					link_icon_source={HomeIcon}
-				/>
+				<NavHome/>
 				<NavButton 
 					link_title="Users"
 					link_dest="/users"

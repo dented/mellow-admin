@@ -1,5 +1,58 @@
 import React from 'react'
-import DashboardPage from '../components/DashboardPage.js'
+import DashboardPage from '../components/DashboardPage'
+// import DashboardTableFilters from '../components/DashboardTableFilters'
+import DashboardTable, { DashboardTableFilters, DashboardTablePagination } from '../components/DashboardTable'
+
+import Select from 'react-select'
+
+const options = [
+  { value: 'all', label: 'All' },
+  { value: 'parent', label: 'Parent' },
+  { value: 'child', label: 'Child' }
+]
+
+const selectStyles = {
+	option: (provided, state) => ({
+		...provided,
+		// borderBottom: '1px dotted pink',
+		// color: state.isSelected ? 'red' : 'blue',
+		// padding: 20,
+	}),
+	control: (provided) => ({
+	// none of react-select's styles are passed to <Control />
+	// width: 200,
+		...provided,
+		width:150,
+	}),
+	singleValue: (provided, state) => {
+		const opacity = state.isDisabled ? 0.5 : 1;
+		const transition = 'opacity 300ms';
+
+		return { ...provided, opacity, transition };
+	}
+}
+
+const RoleFilter = (props) => (
+	<div className="dashboard-table-filter-container">
+		<p className="dashboard-table-filter-label">Role:</p>
+		<Select 
+			options={options} 
+			styles={selectStyles}
+			defaultValue={options[0]}
+			onChange={props.handleChange}
+		/>
+	</div>
+)
+
+const RoleFilter2 = (props) => (
+	<div className="dashboard-table-filter-container">
+		<p className="dashboard-table-filter-label">Role:</p>
+		<select onChange={props.handleChange}>
+			<option>All</option>
+			<option>Parent</option>
+		</select>
+	</div>
+)
 
 export default class DashboardUsers extends React.Component {
 	constructor(props){
@@ -9,78 +62,17 @@ export default class DashboardUsers extends React.Component {
 			all_data:[],
 			filtered_data:[],
 			visible_data:[],
-			number_of_pages:0
+			number_of_pages:0,
+			table_actions:[
+				{label:"View"},
+				{label:"Edit"}
+			]
 		}
 	}
 
 	componentDidMount() {
 		const table_columns=["Name", "Role", "Gender"]
 		const all_data=[
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
-			{
-				name:"Johnsonson",
-				role:"Child",
-				gender:"M"
-			},
 			{
 				name:"Johnsonson",
 				role:"Child",
@@ -123,23 +115,58 @@ export default class DashboardUsers extends React.Component {
 		this.setState({
 			visible_data:visible_data
 		})
+	};
+
+	showRoleOptions = () => {
+		this.setState({
+			show_role_options: true
+		})
+	}
+
+	filterRole = (role) => {
+		let filtered_data = this.state.all_data
+		if(role != 'All'){
+			filtered_data = this.state.all_data.filter((item) => {
+				if(item.role === role) return true
+			})
+		}
+		const visible_data = filtered_data.slice(0,10)
+		const number_of_pages = Math.ceil(filtered_data.length / 10)
+		this.setState({
+			filtered_data:filtered_data,
+			visible_data:visible_data,
+			number_of_pages:number_of_pages
+		})
+	}
+
+	handleRoleChange = (value) => {
+		console.log(value)
+		this.filterRole(value.label)
 	}
 
 	render() {
 		return(
 			<DashboardPage
 				title="Users"
-				show_table={true}
-				table_columns={this.state.table_columns}
-				table_data={this.state.visible_data}
-				number_of_pages={this.state.number_of_pages}
-				filters={[
-					(<div className="dashboard-table-filter-button">
-						Show Parents
-					</div>)
-				]}
-				switchPage={this.switchPage}
-			/>
+			>
+				<DashboardTableFilters>
+					<RoleFilter 
+						filterRole={this.filterRole}
+						showRoleOptions={this.showRoleOptions} 
+						show_role_options={this.state.show_role_options}
+						handleChange={this.handleRoleChange}
+					/>
+				</DashboardTableFilters>
+				<DashboardTablePagination 
+					number_of_pages={this.state.number_of_pages}
+					switchPage={this.switchPage}
+				/>
+				<DashboardTable
+					table_columns={this.state.table_columns}
+					table_data={this.state.visible_data}
+					table_actions={this.state.table_actions}
+				/>
+			</DashboardPage>
 		)
 	}
 }

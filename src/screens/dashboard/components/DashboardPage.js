@@ -2,6 +2,7 @@ import React from 'react'
 import './Dashboard.css'
 
 import DashboardNav from './DashboardNav'
+import DashboardHeader from './DashboardHeader'
 import DashboardTable from './DashboardTable'
 
 export default class DashboardPage extends React.Component {
@@ -9,28 +10,15 @@ export default class DashboardPage extends React.Component {
 	render() {
 		return (
 			<div className="dashboard-container">
-				<DashboardNav/>
-				<div className="dashbaord-content">
-					<div className="dashboard-header">
-						<div className="header-left">
-							<h3>{this.props.title || 'Dashboard'}</h3>
-						</div>
-						<div className="header-right">
-						</div>
+					<DashboardNav/>
+				<div className="dashboard-content">
+					<div className="dashboard-page-title">
+						<h2>{this.props.title}</h2>
 					</div>
-					{
-						this.props.show_table
-						? (
-							<DashboardTable 
-								table_columns={this.props.table_columns}
-								table_data={this.props.table_data}
-								number_of_pages={this.props.number_of_pages}
-								filters={this.props.filters}
-								switchPage={this.props.switchPage}
-							/>
-						)
-						: null
-					}
+					<div className="dashboard-body">
+
+						{this.props.children}
+					</div>
 				</div>
 			</div>
 		)
