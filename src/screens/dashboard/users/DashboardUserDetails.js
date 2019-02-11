@@ -59,18 +59,20 @@ export default class DashboardUserDetails extends React.Component {
 						<div className="userDetails">
 							<h3>Details</h3>
 							<table className="dashboard-details-table">
-								<tr>
-									<td className="dashboard-details-key">Name</td>
-									<td>{this.state.user.name}</td>
-								</tr>
-								<tr>
-									<td className="dashboard-details-key">Role</td>
-									<td>{this.state.user.role}</td>
-								</tr>
-								<tr>
-									<td className="dashboard-details-key">Gender</td>
-									<td>{this.state.user.gender}</td>
-								</tr>
+								<tbody>
+									<tr>
+										<td className="dashboard-details-key">Name</td>
+										<td>{this.state.user.name}</td>
+									</tr>
+									<tr>
+										<td className="dashboard-details-key">Role</td>
+										<td>{this.state.user.role}</td>
+									</tr>
+									<tr>
+										<td className="dashboard-details-key">Gender</td>
+										<td>{this.state.user.gender}</td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 						<div className="userRelationshipsHeader">

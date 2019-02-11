@@ -191,7 +191,7 @@ export default class DashboardTable extends React.Component {
 							})
 						: (
 							<tr className="dashboard-table-row">
-								<td colspan={this.props.table_columns.length + 1} style={{textAlign:'center'}}>
+								<td colSpan={this.props.table_columns.length + 1} style={{textAlign:'center'}}>
 								No Data
 								</td>
 							</tr>

@@ -73,6 +73,7 @@ export default class DashboardUsers extends React.Component {
 
 	handleAction = (item) => {
 		console.log(item)
+		console.log(this.props.history.push('/users/' + item.id))
 	}
 
 	componentDidMount() {
