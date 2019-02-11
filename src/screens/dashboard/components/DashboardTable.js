@@ -30,14 +30,14 @@ export const DashboardTablePagination = (props) => {
 		<div className="dashboard-table-pagination">
 			<div 
 				className="dashboard-table-page-button"
-				onClick={() => props.switchPage(0)}
+				onClick={() => props.switchPage("prev")}
 			>
 				Prev
 			</div>
 			{pages}
 			<div 
 				className="dashboard-table-page-button"
-				onClick={() => props.switchPage(0)}
+				onClick={() => props.switchPage("next")}
 			>
 				Next
 			</div>
@@ -159,23 +159,32 @@ export default class DashboardTable extends React.Component {
 					</thead>
 					<tbody>
 					{
-						this.props.table_data.map((item) => {
-							return (
-								<tr className="dashboard-table-row">
-								{
-									this.props.table_columns.map((column) => (
-										<td>{item[column.toLowerCase()]}</td>
-									))
-								}
-									<td>
-										<DashboardTableAction
-											item={item}
-											table_actions={this.props.table_actions}
-										/>
-									</td>
-								</tr>
-							)
-						})
+						this.props.table_data && this.props.table_data.length > 0
+						? 
+							this.props.table_data.map((item) => {
+								return (
+									<tr className="dashboard-table-row">
+									{
+										this.props.table_columns.map((column) => (
+											<td>{item[column.toLowerCase()]}</td>
+										))
+									}
+										<td>
+											<DashboardTableAction
+												item={item}
+												table_actions={this.props.table_actions}
+											/>
+										</td>
+									</tr>
+								)
+							})
+						: (
+							<tr className="dashboard-table-row">
+								<td colspan={this.props.table_columns.length + 1} style={{textAlign:'center'}}>
+								No Data
+								</td>
+							</tr>
+						)
 					}
 					</tbody>
 				</table>

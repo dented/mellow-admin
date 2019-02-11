@@ -107,6 +107,9 @@ export default class DashboardUsers extends React.Component {
 	}
 
 	switchPage = (page) => {
+		if(page === "prev" || page === "next"){
+			return
+		}
 		//10 rows
 		const start = page * 10 - 10
 		const end = page * 10 
