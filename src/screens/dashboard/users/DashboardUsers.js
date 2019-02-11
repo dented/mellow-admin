@@ -64,32 +64,40 @@ export default class DashboardUsers extends React.Component {
 			visible_data:[],
 			number_of_pages:0,
 			table_actions:[
-				{label:"View"},
-				{label:"Edit"}
+				{label:"View", action:this.handleAction},
+				{label:"Edit", action:this.handleAction}
 			],
 			current_page:1
 		}
+	}
+
+	handleAction = (item) => {
+		console.log(item)
 	}
 
 	componentDidMount() {
 		const table_columns=["Name", "Role", "Gender"]
 		const all_data=[
 			{
+				id:0,
 				name:"Johnsonson",
 				role:"Child",
 				gender:"M"
 			},
 			{
+				id:1,
 				name:"Johnsonson",
 				role:"Child",
 				gender:"M"
 			},
 			{
+				id:2,
 				name:"Johnsonson",
 				role:"Child",
 				gender:"M"
 			},
 			{
+				id:3,
 				name:"Johnsonson",
 				role:"Child",
 				gender:"M"

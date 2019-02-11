@@ -95,7 +95,7 @@ class DashboardTableAction extends React.Component {
 				const hidden_div = (
 					<div 
 						className="dashboard-table-action-button dashboard-table-action-hidden"
-						onClick={this.handleClickButton}
+						onClick={() => action.action(this.props.item)}
 					>
 						{action.label}
 					</div>
@@ -111,7 +111,7 @@ class DashboardTableAction extends React.Component {
 						? (
 							<div 
 								className="dashboard-table-action-button"
-								onClick={this.handleClickButton}
+								onClick={() => this.props.table_actions[0].action(this.props.item)}
 							>
 								{this.props.table_actions[0].label}
 							</div>
