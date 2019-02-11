@@ -9,6 +9,7 @@ export default class DashboardHome extends React.Component {
 		return (
 			<DashboardPage
 				title="Home"
+				pathname={this.props.location.pathname}
 			/>
 		)
 	}

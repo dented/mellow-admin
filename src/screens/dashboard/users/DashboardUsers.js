@@ -145,9 +145,11 @@ export default class DashboardUsers extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.location)
 		return(
 			<DashboardPage
 				title="Users"
+				pathname={this.props.location.pathname}
 			>
 				<DashboardTableFilters>
 					<RoleFilter 
